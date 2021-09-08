@@ -1,0 +1,29 @@
+pipeline {
+   agent any
+
+   tools {
+      // Install the Maven version configured as "MAVEN_HOME" and add it to the path.
+      maven "MAVEN_HOME"
+   }
+
+   stages {
+      stage('Build') {
+         steps {
+            sh "mvn clean compile"
+         }
+         }
+      stage("Test") {
+          steps {
+            sh "mvn clean test"
+            
+          }
+
+      }
+      stage("Deploy") {
+          steps {
+            sh "mvn clean install"   
+          }
+      }
+
+      }
+}
